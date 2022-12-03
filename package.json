@@ -10,13 +10,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:ethguard.helloWorld"
+    "onCommand:ethguard.runDetector"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "ethguard.helloWorld",
+        "command": "ethguard.runDetector",
         "title": "Run EthGuard"
       }
     ]
