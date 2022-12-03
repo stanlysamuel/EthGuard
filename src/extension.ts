@@ -10,13 +10,11 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('ethguard.runDetector', async () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		const editor = vscode.window.activeTextEditor?.document.fileName;
-		// editor.document.save();
-
-		const execShell = (cmd: string) =>
+	vscode.window.showInformationMessage("EthGuard is running in the background ... ");
+	let disposable = 
+		vscode.workspace.onDidSaveTextDocument( async () => {
+			const editor = vscode.window.activeTextEditor?.document.fileName;
+			const execShell = (cmd: string) =>
 			new Promise<string>((resolve, reject) => {
 				cp.exec(cmd, (err, out) => {
 					if (err) {
@@ -24,10 +22,11 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 					return resolve(out);
 				});
-    	});
-		const result = await execShell('python3 /Users/stanly/Project/Veridise/redetector/code/peculiar_dummy.py ' + editor);
-		vscode.window.showInformationMessage(result);
-	});
+    		});
+			vscode.window.showInformationMessage("Analysing code upon save ...");
+			const result = await execShell('python3 /Users/stanly/Project/Veridise/ethguard/src/detectors/dummy_detector.py ' + editor);
+			vscode.window.showInformationMessage(result);
+		});
 
 	context.subscriptions.push(disposable);
 }
