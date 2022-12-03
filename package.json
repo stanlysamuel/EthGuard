@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "ethguard.helloWorld",
-        "title": "Hello World"
+        "title": "Run EthGuard"
       }
     ]
   },
