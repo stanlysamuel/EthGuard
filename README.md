@@ -1,6 +1,27 @@
-# ethguard README
+# EthGuard: Responsive ML based Smart Contract Vulnerability Detection for VSCode
 
-This is the README for your extension "ethguard". After writing up a brief description, we recommend including the following sections.
+EthGuard is a VSCode extension that uses a pre-trained ML model to predict the possibility of four types of common bugs in Solidity Smart Contracts:
+* Re-entrancy
+* Front runner
+* Access Control
+* Unchecked low calls
+
+The extension is automatically invoked when VSCode is initialized and runs the classifier for each of these bugs upon every save. This aids developers in predicting if they are writing sound code. Since we are using an ML model, we are neither guaranteed to be sound nor complete. However, our experimentation proves that 73% to 97% accuracy depending on the type of bug we are trying to detect.
+
+This is a competition entry for Ethereum India Hackathon 2022.
+
+## Motivation
+
+Smart contracts are widely used in the blockchain space for multi-party transactions that involve monetary exchange. However, these contracts are prone to security vulnerabilities that has cost more than 2.1B dollars in the last year itself.
+Current manual and automatic approaches/ tools range from a low level expertise to high level expertise in terms of skills and also vary in terms of scalability depending on the complexity of the approach.
+However, these require the user to submit the code externally for checks whereas it is obvious that the most natural and ideal way for such checks is to enable the coder right within their development environment (for example as a VSCode extension). However, most of these tools are not tractable enough for quick detection of bugs and hence such an extension is a far fetched goal.
+Thus, we focus on an efficient and responsive VSCode plugin, enabled due to machine learning, to help developers catch well known bugs at runtime. We train an existing model to 
+* VSCode extension
+* Tested on 3 more bugs
+* Improved performance of existing re-entrancy detector using  ABalanced dataset
+
+<!-- ## Results
+TODO
 
 ## Features
 
@@ -14,58 +35,43 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+If you have any requirements or dependencies, add a section describing those and how to install and configure them. -->
 
 ## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+TODO
+<!-- Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
 
 For example:
 
 This extension contributes the following settings:
 
 * `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `myExtension.thing`: Set to `blah` to do something. -->
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+We hard code the path in line 27 of `src/extension.ts`. This will have to be manually changed upon reinstalling.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of EthGuard which is an ML based Smart Contract Vulnerability Detection for VSCode. We support the following bugs:
+* Re-entrancy
+* Front runner
+* Access Control
+* Unchecked low calls
 
-### 1.0.1
+## Members
 
-Fixed issue #.
+Ajinkya Rajput, Veridise Inc. and Indian Institute of Science, Bangalore
+Stanly Samuel, Veridise Inc. and Indian Institute of Science, Bangalore
+Himanshu Vashisht, Veridise Inc.
 
-### 1.1.0
+## Challenges we ran into
 
-Added features X, Y, and Z.
+Obtaining the dataset was a challenge. Although the Smart Bugs dataset was present, we had to extract relevant datasets from them for the different classes of bugs that we consider.
 
----
+Large model sizes were difficult to deal with due to limited internet connectivity. Hence, it was time consuming.
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+VSCode extension documentation is very sparse. Information is easily available for callbacks pertaining to the initialization of extensions. However, it was challenging to figure out the right API's to use to analyse code at runtime in VSCode.
