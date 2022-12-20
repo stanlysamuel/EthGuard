@@ -64,9 +64,9 @@ Initial release of EthGuard which is an ML based Smart Contract Vulnerability De
 
 ## Members
 
-Ajinkya Rajput, Veridise Inc. and Indian Institute of Science, Bangalore
-Stanly Samuel, Veridise Inc. and Indian Institute of Science, Bangalore
-Himanshu Vashisht, Veridise Inc.
+- Ajinkya Rajput, Veridise Inc. and Indian Institute of Science, Bangalore
+- Stanly Samuel, Veridise Inc. and Indian Institute of Science, Bangalore
+- Himanshu Vashisht, Veridise Inc.
 
 ## Challenges we ran into
 
